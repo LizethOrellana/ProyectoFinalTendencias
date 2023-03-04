@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cat-fantasia',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cat-fantasia.component.css']
 })
 export class CatFantasiaComponent implements OnInit {
-
-  constructor() { }
+  currentComponent: string = 'carrito';
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
-
+  showCarrito() {
+    this.currentComponent = 'carrito';
+  }
 }
