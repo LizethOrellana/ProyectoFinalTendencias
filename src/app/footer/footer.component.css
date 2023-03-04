@@ -21,13 +21,7 @@
    
 }
 
-.contenedor {
-    margin-top: 100px;
-    width: 100%;
-    display: flex;
-    max-width: max-content;
-   
-}
+
 
 hr {
     background-color: black;
@@ -35,13 +29,13 @@ hr {
 }
 
 .tarjeta {
-    margin: 20px;
+    margin: 10px;
     border-radius: 8px;
    
 }
 
 .tarjeta .contenido {
-    margin: 30px;
+    margin: 10px;
 }
 
 .tarjeta .contenido .imagen {

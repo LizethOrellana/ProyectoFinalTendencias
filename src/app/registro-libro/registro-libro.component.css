@@ -1,13 +1,7 @@
-
-
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* opcional: establece la altura del contenedor para centrar verticalmente */
-  }
-
-  .boton{
+.contenedor{
+    margin: 20px;
+}
+.boton{
     border-radius: 5px;
     text-align: center;
     background-color:#BE6134; 

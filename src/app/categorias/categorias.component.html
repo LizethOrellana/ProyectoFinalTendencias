@@ -1,0 +1,22 @@
+<body>
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a (click)="showFantasia()">Fantasía</a></li>
+        <li><a (click)="showTerror()">Terror</a></li>
+        <li><a (click)="showSuspenso()">Suspenso</a></li>
+        <li><a (click)="showHistorico()">Histórico</a></li>
+        <li><a (click)="showDrama()">Drama</a></li>
+      </ul>
+    </nav>
+    <div class="content">
+      <ng-container [ngSwitch]="currentComponent">
+        <app-cat-fantasia *ngSwitchCase="'fantasia'"></app-cat-fantasia>
+        <app-cat-terror *ngSwitchCase="'terror'"></app-cat-terror>
+        <app-cat-suspenso *ngSwitchCase="'suspenso'"></app-cat-suspenso>
+        <app-cat-historico *ngSwitchCase="'historico'"></app-cat-historico>
+        <app-cat-drama *ngSwitchCase="'drama'"></app-cat-drama>
+      </ng-container>
+    </div>
+  </div>
+</body>
