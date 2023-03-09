@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { usuario } from '../registro-cliente/usuario';
 
 import { RegistroAdminComponent } from './registro-admin.component';
 

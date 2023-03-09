@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -21,6 +22,7 @@ import { PagosComponent } from './pagos/pagos.component';
 import { EventosComponent } from './eventos/eventos.component';
 import { RegistroLibroComponent } from './registro-libro/registro-libro.component';
 import { StockComponent } from './stock/stock.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { StockComponent } from './stock/stock.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    FormsModule,
     AppRoutingModule,
     RouterModule.forRoot([
       {path: '', component: InicioComponent},

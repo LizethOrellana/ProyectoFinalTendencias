@@ -5,29 +5,35 @@
             <div class="card-body ">
                 <h5 class="card-title" style="text-align: center;">Registro de Vendedores</h5>
           <p class="card-title" style="text-align: center;">Aquí puedes registrar un nuevo compañero</p><br>
-          <form>
+          <form (ngSubmit)="create( contra1.value , contra2.value)">
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-3 col-form-label">Cédula</label>
+              <div class="col-sm-9">
+                <input type="text"  class="form-control"  [(ngModel)]="usuario.cedula" name="cedula" placeholder="Escriba la cédeula" required>
+              </div><br><br><br>
+            </div>
             <div class="form-group row">
               <label for="staticEmail" class="col-sm-3 col-form-label">Nombres</label>
               <div class="col-sm-9">
-                <input type="text"  class="form-control"  placeholder="Escribe tu nombre" required>
+                <input type="text"  class="form-control" [(ngModel)]="usuario.nombre" name="nombre" placeholder="Escribe tu nombre" required>
               </div><br><br><br>
             </div>
             <div class="form-group row">
               <label for="staticEmail" class="col-sm-3 col-form-label">Dirección</label>
               <div class="col-sm-9">
-                <input type="text"  class="form-control" placeholder="Escribe tu dirección" required>
+                <input type="text"  class="form-control" [(ngModel)]="usuario.direccion"  name="direccion" placeholder="Escribe tu dirección" required>
               </div><br><br><br>
             </div>
             <div class="form-group row">
               <label for="staticEmail" class="col-sm-3 col-form-label">Email</label>
               <div class="col-sm-9">
-                <input type="text"  class="form-control" id="staticEmail" placeholder="Escribe tu correo" required>
+                <input type="text"  class="form-control" #contra1 id="staticEmail" [(ngModel)]="usuario.correo" name="correo" placeholder="Escribe tu correo" required>
               </div><br><br><br>
             </div>
             <div class="form-group row">
               <label for="inputPassword" class="col-sm-3 col-form-label">Contraseña</label>
               <div class="col-sm-9">
-                <input type="password" class="form-control" id="inputPassword" placeholder="Ingresa tu contrseña" required>
+                <input type="password" class="form-control" #contra2 id="inputPassword" [(ngModel)]="usuario.clave" name="contraseña" placeholder="Ingresa tu contrseña" required>
               </div>
             </div><br>
             <div class="form-group row">

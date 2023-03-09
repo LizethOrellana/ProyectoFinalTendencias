@@ -8,50 +8,23 @@
       <img src="https://cdn-icons-png.flaticon.com/512/3686/3686871.png" style="width: 40px; height: 40px;">
     </button>
   </form><br>
-
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Libro</h5>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Descripción del libro</li>
-          <li class="list-group-item">Precio</li>
-        </ul>
-        <div class="card-body">
-          <a href="#" class="card-link">Añadir al carrito</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Libro</h5>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Descripción del libro</li>
-          <li class="list-group-item">Precio</li>
-        </ul>
-        <div class="card-body">
-          <a href="#" class="card-link">Añadir al carrito</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Libro</h5>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Descripción del libro</li>
-          <li class="list-group-item">Precio</li>
-        </ul>
-        <div class="card-body">
-          <a href="#" class="card-link">Añadir al carrito</a>
+  <div *ngFor="let libro of libros1">
+    <div *ngIf="libro.categoria === 'terror'">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{ libro.titulo }}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">{{ libro.autor }}</li>
+              <li class="list-group-item">{{ libro.precio }}</li>
+            </ul>
+            <div class="card-body">
+              <a href="#" class="card-link">Añadir al carrito</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
