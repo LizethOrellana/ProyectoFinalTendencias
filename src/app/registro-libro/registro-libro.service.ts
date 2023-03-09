@@ -24,9 +24,9 @@ export class RegistroLibroService {
     return this.http.get<libros[]>(this.urlendpoint2);
   }
 
-  buscarLibro(nombre: String)
-    : Observable<libros> {
-    let res = this.urlBuscarLibro + '/' + nombre;
-    return this.http.get<libros>(res);
+  buscarLibro (nombre:String)
+  :Observable<libros[]>{
+    let res=this.urlBuscarLibro+'/'+nombre;
+    return this.http.get<libros[]>(res);
   }
 }

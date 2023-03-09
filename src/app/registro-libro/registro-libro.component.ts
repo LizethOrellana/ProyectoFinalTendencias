@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { libros } from './libros';
 import { RegistroLibroService } from './registro-libro.service';
 import { Router } from '@angular/router';
@@ -10,14 +10,31 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-registro-libro',
+  template: `
+    <select #categoriaSelec>
+      <option #terror value="fantasia">Fantasía</option>
+      <option value="suspenso">Suspenso</option>
+      <option value="historico">Histórico</option>
+      <option value="drama">Drama</option>
+    </select>
+  `,
   templateUrl: './registro-libro.component.html',
   styleUrls: ['./registro-libro.component.css']
 })
 export class RegistroLibroComponent implements OnInit {
   public libros: libros = new libros();
   libros1: libros[] = [];
+  libs: libros[]=[];
+  bus: boolean = true;
+  buscarval: boolean = false;
   public previsualizacion?: string;
   constructor(private sanitizer: DomSanitizer,private libroservice: RegistroLibroService, private router: Router) { }
+  @ViewChild('titulo') titulo!: ElementRef;
+  @ViewChild('autor') autor!: ElementRef;
+  @ViewChild('editorial') editorial!: ElementRef;
+  @ViewChild('precio') precio!: ElementRef;
+  @ViewChild('stock') stock!: ElementRef;
+  @ViewChild('categoriaSelect') categoriaSelect!: ElementRef;
 
   ngOnInit(): void {
     this.libroservice.getLibros().subscribe(
@@ -25,6 +42,26 @@ export class RegistroLibroComponent implements OnInit {
       //libro => this.libros=libro
     );
   }
+  editar(libro:any){
+    this.titulo.nativeElement.value = libro.titulo;
+    this.autor.nativeElement.value = libro.autor;
+    this.editorial.nativeElement.value = libro.editorial;
+    this.precio.nativeElement.value = libro.precio;
+    this.stock.nativeElement.value = libro.autor;
+    this.categoriaSelect.nativeElement.select=libro.categoria;
+  }
+
+  buscarLibxNomb(nombre: String) {
+    this.bus = false;
+    this.libroservice.buscarLibro(nombre).subscribe(
+      librs => {
+        this.libs = librs;
+        console.log(this.libs.length);
+        this.buscarval = true;
+      }
+    )
+  }
+
   capturarImagen(event: any): any {
     const archivocapturado = event.target.files[0]
     this.extraerBase64(archivocapturado).then((imagen: any) => {

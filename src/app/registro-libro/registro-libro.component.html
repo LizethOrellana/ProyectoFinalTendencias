@@ -1,6 +1,6 @@
 <div class="contenedor">
 <div class="row">
-    <div class="col-sm-5">
+    <div class="col-sm-4">
       <div class="card"  >
         <div class="card-body ">
             <h5 style="text-align: center;">Formulario del Libro</h5><br>
@@ -9,44 +9,44 @@
             <div class="form-group row">
                 <label for="staticEmail" class="col-sm-3 col-form-label">Título</label>
                 <div class="col-sm-9">
-                  <input type="text"  class="form-control"  placeholder="Escribe el título del libro" required>
+                  <input type="text"  class="form-control" #titulo  placeholder="Escribe el título del libro" required>
                 </div><br><br><br>
             </div>
             <div class="form-group row">
                 <label for="staticEmail" class="col-sm-3 col-form-label">Autor</label>
                 <div class="col-sm-9">
-                  <input type="text"  class="form-control" placeholder="Escribe el autor del libro" required>
+                  <input type="text"  class="form-control" #autor placeholder="Escribe el autor del libro" required>
                 </div><br><br><br>
               </div>
               <div class="form-group row">
                 <label for="staticEmail" class="col-sm-3 col-form-label">Editorial</label>
                 <div class="col-sm-9">
-                  <input type="text"  class="form-control" placeholder="Escribe la editorial al que pertenece" required>
+                  <input type="text"  class="form-control" #editorial placeholder="Escribe la editorial al que pertenece" required>
                 </div><br><br><br>
               </div>
               <div class="form-group row">
                 <label for="staticEmail" class="col-sm-3 col-form-label">Categoria</label>
                 <div class="col-sm-9">
-                    <select  style="width: 350px; height: 40px; border-radius: 5px; border-color:darkgray;" id="inputGroupSelect01">
-                        <option selected>Elija una opción</option>
-                        <option value="1">Fantasía</option>
-                        <option value="2">Suspenso</option>
-                        <option value="3">Hístorico</option>
-                        <option value="3">Drama</option>
+                    <select  style="width: 270px; height: 40px;  border-radius: 5px; border-color:darkgray;" name= "categoriaSelec" #categoriaSelec id="inputGroupSelect01">
+                        <option disabled selected hidden>Elija una opción</option>
+                        <option value="fantasia">Fantasía</option>
+                        <option value="suspenso">Suspenso</option>
+                        <option value="historico" >Hístorico</option>
+                        <option value="drama"  >Drama</option>
                       </select>
                 </div><br><br><br>
               </div>
               
                 <div class="form-group row">
-                  <label for="staticEmail" class="col-sm-3 col-form-label">Precio</label>
+                  <label for="staticEmail"  class="col-sm-3 col-form-label">Precio</label>
                   <div class="col-sm-9">
-                    <input type="text"  class="form-control" placeholder="Escribe el precio del libro" required>
+                    <input type="text" #precio class="form-control" placeholder="Escribe el precio del libro" required>
                   </div><br><br><br>
                 </div>
                 <div class="form-group row">
                   <label for="staticEmail" class="col-sm-3 col-form-label">Stock</label>
                   <div class="col-sm-9">
-                    <input type="text"  class="form-control" placeholder="Escribe el número de libros disponibles" required>
+                    <input type="text"  #stock  class="form-control" placeholder="Escribe el número de libros disponibles" required>
                   </div><br><br><br>
                 </div>
           </form>
@@ -54,7 +54,7 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-8">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title" style="text-align: center;" >Tabla de Libros</h5><br>
@@ -67,7 +67,7 @@
           </form>
           <table class="table" style="border-color: black; border: 2px;" >
             <thead>
-              <tr>
+              <tr style="text-align: center;">
                 <th style="background-color: #F1D9CE;" scope="col">#</th>
                 <th style="background-color: #F1D9CE;" scope="col">Titulo</th>
                 <th style="background-color: #F1D9CE;" scope="col">Autor</th>
@@ -75,19 +75,54 @@
                 <th style="background-color: #F1D9CE;" scope="col">Categoria</th>
                 <th style="background-color: #F1D9CE;" scope="col">Precio</th>
                 <th style="background-color: #F1D9CE;" scope="col">Stock</th>
+                <th style="background-color: #F1D9CE;" scope="col">Pdf</th>
+                <th style="background-color: #F1D9CE;" scope="col">Acciones</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let libro of libros1">
                 <td>{{ libro.id }}</td>
-                <td>{{ libro.titulo }}</td>
+                <td >{{ libro.titulo }}</td>
                 <td>{{ libro.autor }}</td>
                 <td>{{ libro.editorial }}</td>
                 <td>{{ libro.categoria }}</td>
                 <td>{{ libro.precio }}</td>
                 <td>{{ libro.stock }}</td>
+                <td>
+                  <a href="{{libro.imagenURL}}">
+                    <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" width=40 height=40 >
+                  </a>
+                </td>
+                <td>
+                  <button class=" btn" 
+                  style="background-color:#BE6134; font-size: small;" (click)="editar(libro)">Editar</button>&nbsp;&nbsp;
+                  <button class="btn " routerLink="/app-inicio-sesion"
+                  style="background-color:#BE6134; font-size: small;">Eliminar</button>
+                </td>
               </tr>
             </tbody>
+            <table class="table table-bordered table-stripped libros" *ngIf=buscarval>
+              <tbody class="text-center">
+                <tr *ngFor="let lib of libs">
+                  <td>{{ lib.id }}</td>
+                  <td>{{ lib.titulo }}</td>
+                  <td>{{ lib.autor }}</td>
+                  <td>{{ lib.editorial }}</td>
+                  <td>{{ lib.categoria }}</td>
+                  <td>{{ lib.precio }}</td>
+                  <td>{{ lib.stock }}</td>
+                  <td>
+                    <a href="{{lib.imagenURL}}">
+                      <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" width=40 height=40 >
+                    </a>
+                  </td>
+                  <td>
+                    <button class=" btn " style="background-color:#BE6134; font-size: small;" (click)="editar(lib)">Editar</button>&nbsp;&nbsp;
+                    <button class="btn " style="background-color:#BE6134; font-size: small;">Eliminar</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </table>
         </div>
       </div>
