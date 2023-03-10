@@ -9,7 +9,7 @@ export class RegistroLibroService {
   private urlendpoint: string = 'http://localhost:8080/api/crearlibro';
   private urlendpoint1: string = 'http://localhost:8080/api/listarlibros';
   private urlendpoint2: string = 'http://localhost:8080/api/cursos/getlibros';
-  private urlBuscarLibro: string ='http://localhost:8080/api/listarlibrosxnombre';
+  private urlBuscarLibro: string ='http://localhost:8080/api/cursos/buscarxnombre';
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
   constructor(private http:HttpClient) { }

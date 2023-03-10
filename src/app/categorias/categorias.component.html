@@ -7,6 +7,7 @@
         <li><a (click)="showSuspenso()">Suspenso</a></li>
         <li><a (click)="showHistorico()">Histórico</a></li>
         <li><a (click)="showDrama()">Drama</a></li>
+        <li><a (click)="showAccion()">Accion</a></li>
       </ul>
     </nav>
     <div class="content">
@@ -16,6 +17,7 @@
         <app-cat-suspenso *ngSwitchCase="'suspenso'"></app-cat-suspenso>
         <app-cat-historico *ngSwitchCase="'historico'"></app-cat-historico>
         <app-cat-drama *ngSwitchCase="'drama'"></app-cat-drama>
+        <app-cat-accion *ngSwitchCase="'accion'"></app-cat-accion>
       </ng-container>
     </div>
   </div>

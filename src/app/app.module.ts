@@ -23,6 +23,7 @@ import { EventosComponent } from './eventos/eventos.component';
 import { RegistroLibroComponent } from './registro-libro/registro-libro.component';
 import { StockComponent } from './stock/stock.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CatAccionComponent } from './cat-accion/cat-accion.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { HttpClientModule } from '@angular/common/http';
     CatTerrorComponent,
     CatSuspensoComponent,
     CatDramaComponent,
+    CatAccionComponent,
     CatHistoricoComponent,
     CarritoComprasComponent,
     RegistroAdminComponent,
@@ -59,6 +61,7 @@ import { HttpClientModule } from '@angular/common/http';
       {path: 'app-cat-terror', component: CatTerrorComponent},
       {path: 'app-cat-suspenso', component: CatSuspensoComponent},
       {path: 'app-cat-drama', component: CatDramaComponent},
+      {path: 'app-cat-accion', component: CatAccionComponent},
       {path: 'app-cat-historico', component: CatHistoricoComponent},
       {path: 'app-registro-libro', component: RegistroLibroComponent},
       {path: 'app-registro-admin', component: RegistroAdminComponent},

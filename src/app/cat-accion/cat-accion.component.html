@@ -1,5 +1,5 @@
 <div>
-  <h3>Terror</h3>
+  <h3>Acción</h3>
   <br>
   <form class="d-flex buscar" role="search">
     <input class="form-control me-1" type="search" placeholder="Buscar" aria-label="Buscar"
@@ -9,11 +9,11 @@
     </button>
   </form><br>
   <div *ngFor="let libro of libros1">
-    <div *ngIf="libro.categoria === 'terror'">
+    <div *ngIf="libro.categoria === 'accion'">
       <div class="row">
         <div class="col-sm-4">
           <div class="card" style="width: 18rem;">
-            <img src="{{libro.imagenget}}" alt="No encontrada" width="90" height="90" class="card-img-top" >
+            <img src="{{libro.imagenget}}" class="card-img-top"  alt="...">
             <div class="card-body">
               <h5 class="card-title">{{ libro.titulo }}</h5>
             </div>

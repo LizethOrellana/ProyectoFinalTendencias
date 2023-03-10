@@ -28,5 +28,8 @@ export class CategoriasComponent implements OnInit {
   showDrama() {
     this.currentComponent = 'drama';
   }
+  showAccion() {
+    this.currentComponent = 'accion';
+  }
 
 }

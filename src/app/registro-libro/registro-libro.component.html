@@ -59,16 +59,18 @@
         <div class="card-body">
           <h5 class="card-title" style="text-align: center;" >Tabla de Libros</h5><br>
           <form class="d-flex buscar" role="search">
-            <input class="form-control me-1" type="search" placeholder="Buscar" aria-label="Buscar"
+            <input class="form-control me-1" (keyup)="onKeydownEvent($event, buscarlibro.value)" #buscarlibro type="search"  placeholder="Buscar" aria-label="Buscar"
               style=" border-color: #F1D9CE; height:40px;" />
-            <button class="btn" type="submit">
+            <button class="btn" (click)="buscarLibxNomb(buscarlibro.value)" type="submit">
               <img src="https://cdn-icons-png.flaticon.com/512/3686/3686871.png" style="width: 40px; height: 40px;">
             </button>
           </form>
-          <table class="table" style="border-color: black; border: 2px;" >
+          <table class="table" style="border-color: black; border: 2px;" *ngIf=bus>
             <thead>
               <tr style="text-align: center;">
+                <th style="background-color: #F1D9CE;" scope="col">Portada</th>
                 <th style="background-color: #F1D9CE;" scope="col">#</th>
+                
                 <th style="background-color: #F1D9CE;" scope="col">Titulo</th>
                 <th style="background-color: #F1D9CE;" scope="col">Autor</th>
                 <th style="background-color: #F1D9CE;" scope="col">Editorial</th>
@@ -79,9 +81,17 @@
                 <th style="background-color: #F1D9CE;" scope="col">Acciones</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center" >
               <tr *ngFor="let libro of libros1">
+
+                
+                <td>
+                  <a href="{{libro.imagenget}}" width=80 height=80>
+                    <img  src="{{libro.imagenget}}" alt="No encontrada" width=80 height=80/>
+                  </a>
+                </td>
                 <td>{{ libro.id }}</td>
+                
                 <td >{{ libro.titulo }}</td>
                 <td>{{ libro.autor }}</td>
                 <td>{{ libro.editorial }}</td>
@@ -94,17 +104,35 @@
                   </a>
                 </td>
                 <td>
-                  <button class=" btn" 
-                  style="background-color:#BE6134; font-size: small;" (click)="editar(libro)">Editar</button>&nbsp;&nbsp;
-                  <button class="btn " routerLink="/app-inicio-sesion"
-                  style="background-color:#BE6134; font-size: small;">Eliminar</button>
+                  <button class=" btn btn-outline-primary" 
+                  style="font-size: small;" (click)="editar(libro)"><i class="far fa-edit"></i></button><br>
+                  <button class="btn btn-outline-danger " routerLink="/app-inicio-sesion"
+                  style="font-size: small;"><i class="far fa-trash-alt"></i></button>
                 </td>
               </tr>
             </tbody>
-            <table class="table table-bordered table-stripped libros" *ngIf=buscarval>
+          </table>  
+            <table class="table" style="border-color: black; border: 2px;" *ngIf=buscarval>
+              <thead>
+                <tr style="text-align: center;">
+                  <th style="background-color: #F1D9CE;" scope="col">Imagen</th>
+                  <th style="background-color: #F1D9CE;" scope="col">#</th>
+
+                  <th style="background-color: #F1D9CE;" scope="col">Titulo</th>
+                  <th style="background-color: #F1D9CE;" scope="col">Autor</th>
+                  <th style="background-color: #F1D9CE;" scope="col">Editorial</th>
+                  <th style="background-color: #F1D9CE;" scope="col">Categoria</th>
+                  <th style="background-color: #F1D9CE;" scope="col">Precio</th>
+                  <th style="background-color: #F1D9CE;" scope="col">Stock</th>
+                  <th style="background-color: #F1D9CE;" scope="col">Pdf</th>
+                  <th style="background-color: #F1D9CE;" scope="col">Acciones</th>
+                </tr>
+              </thead>
               <tbody class="text-center">
                 <tr *ngFor="let lib of libs">
+                  <td><img src="{{lib.imagenget}}" alt="No encontrada" width=80 height=80/></td>
                   <td>{{ lib.id }}</td>
+
                   <td>{{ lib.titulo }}</td>
                   <td>{{ lib.autor }}</td>
                   <td>{{ lib.editorial }}</td>
@@ -117,13 +145,12 @@
                     </a>
                   </td>
                   <td>
-                    <button class=" btn " style="background-color:#BE6134; font-size: small;" (click)="editar(lib)">Editar</button>&nbsp;&nbsp;
-                    <button class="btn " style="background-color:#BE6134; font-size: small;">Eliminar</button>
+                    <button class=" btn btn-outline-primary mx-2 " style="font-size: small;" (click)="editar(lib)"><i class="far fa-edit"></i></button><br>
+                    <button class="btn btn-outline-danger " style="font-size: small;"><i class="far fa-trash-alt"></i></button>
                   </td>
                 </tr>
               </tbody>
             </table>
-          </table>
         </div>
       </div>
     </div>

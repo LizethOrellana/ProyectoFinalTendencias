@@ -6,6 +6,8 @@ export class libros{
     categoria?: string;
     imagenURL?: string;
     imagenPhat?: string;
+    imagenpost?:string;
+    imagenget?:string;
     precio?: number;
     stock?: number;
 }

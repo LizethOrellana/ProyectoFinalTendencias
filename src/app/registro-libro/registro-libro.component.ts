@@ -34,21 +34,44 @@ export class RegistroLibroComponent implements OnInit {
   @ViewChild('editorial') editorial!: ElementRef;
   @ViewChild('precio') precio!: ElementRef;
   @ViewChild('stock') stock!: ElementRef;
-  @ViewChild('categoriaSelect') categoriaSelect!: ElementRef;
+  @ViewChild('categoriaSelec') categoriaSelect!: ElementRef;
 
   ngOnInit(): void {
     this.libroservice.getLibros().subscribe(
       libro => this.libros1 = libro
       //libro => this.libros=libro
     );
+    this.buscarval = false;
+    this.bus = true;
+  }
+
+  onKeydownEvent(event: KeyboardEvent, titulo: String): void {
+    if (titulo == "") {
+      this.ngOnInit();
+    }
   }
   editar(libro:any){
     this.titulo.nativeElement.value = libro.titulo;
     this.autor.nativeElement.value = libro.autor;
     this.editorial.nativeElement.value = libro.editorial;
     this.precio.nativeElement.value = libro.precio;
-    this.stock.nativeElement.value = libro.autor;
-    this.categoriaSelect.nativeElement.select=libro.categoria;
+    this.stock.nativeElement.value = libro.stock;
+
+     // Obtener el elemento nativo del ComboBox
+     const selectElement = this.categoriaSelect.nativeElement;
+
+     // Buscar la opción correspondiente al valor de libro.categoria
+     let selectedOption = selectElement.querySelector(`[value="${libro.categoria}"]`);
+ 
+     // Si la opción no existe, agregarla al ComboBox
+     if (!selectedOption) {
+       selectedOption = new Option(libro.categoria, libro.categoria);
+       selectElement.add(selectedOption);
+     }
+ 
+     // Establecer la opción seleccionada en el ComboBox
+     selectElement.value = libro.categoria;
+
   }
 
   buscarLibxNomb(nombre: String) {
