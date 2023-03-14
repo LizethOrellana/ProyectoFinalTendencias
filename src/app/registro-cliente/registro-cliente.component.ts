@@ -18,33 +18,20 @@ export class RegistroClienteComponent implements OnInit {
   ngOnInit(): void {
     
   }
-  public create(contra1: String, contra2: String): void {
-    if (contra1 == contra2) {
-      this.usuario.estado = true;
-      this.usuario.rol = 2;
-      console.log(this.usuario.cedula+' '+this.usuario.nombre+' '+this.usuario.correo+' '+this.usuario.direccion+' '+this.usuario.rol+' '+this.usuario.estado+' '+this.usuario.id_usuario)
-      this.usuarioservice.create(this.usuario).subscribe(
-        response => {
-          this.usuario/*,this.router.navigate([''])*/
-          //Swal.fire('Usuario Guardado','Te damos la bienvenida "'+this.usuario.persona?.nombres+'" te has registrado con exito','success')
-          Swal.fire({
-            title: '<strong>¡Usuario Guardado!</strong>',
-            confirmButtonText: 'OK',
-            confirmButtonColor: '#012844',
-            icon: 'success',
-            html:
-              '<b>' + this.usuario.nombre + '</b><br>' +
-              'te has registrado con exito'
-          })
-        }
-      )
-    }else{
+  public create(cedula:string,nombre:string, contra1: String, contra2: String): void {
+    if(contra1!=contra2 && contra1.length!=8){
       Swal.fire({
-        title: '<strong>¡Contraseñas no coinciden!</strong>',
+        title: '<strong>¡Contraseñas no coinciden o es menor a 8 caracteres!</strong>',
         confirmButtonText: 'OK',
         confirmButtonColor: '#012844',
-        icon: 'error',
+        icon: 'error'
       })
+    }else if (cedula.length === 10) {
+      console.log("boton");
+      this.usuarioservice.create(this.usuario).subscribe();
+    }else{
+      
     }
+    
   }
 }

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { JwtModule } from '@auth0/angular-jwt';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,8 +24,12 @@ import { PagosComponent } from './pagos/pagos.component';
 import { EventosComponent } from './eventos/eventos.component';
 import { RegistroLibroComponent } from './registro-libro/registro-libro.component';
 import { StockComponent } from './stock/stock.component';
-import { HttpClientModule } from '@angular/common/http';
+import { RegistroClienteService } from './registro-cliente/registro-cliente.service';
 import { CatAccionComponent } from './cat-accion/cat-accion.component';
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -49,6 +55,11 @@ import { CatAccionComponent } from './cat-accion/cat-accion.component';
   ],
   imports: [
     BrowserModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter
+      }
+    }),
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
@@ -71,7 +82,14 @@ import { CatAccionComponent } from './cat-accion/cat-accion.component';
       {path: 'app-stock', component: StockComponent},
     ]),
   ],
-  providers: [],
+  providers: [
+    RegistroClienteService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
